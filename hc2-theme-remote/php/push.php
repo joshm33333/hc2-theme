@@ -4,7 +4,7 @@
 
 	add_action( 'admin_menu', 'hcube_addprod' );
 	function hcube_addprod(){
-		add_submenu_page( 'hcube_settings', 'Production', 'Files', 'publish_posts', 'hcube_prod', 'hcube_createpage_prod' );
+		add_submenu_page( 'hcube_settings', 'Production', 'Files', 'manage_options', 'hcube_prod', 'hcube_createpage_prod' );
 	}	
 
 	add_action('rest_api_init',function(){register_rest_route('hc2/v1','/scan/',array('methods'=>'POST','callback'=>'hcube_scan','permission_callback' => function($request){ return is_user_logged_in();}));});
