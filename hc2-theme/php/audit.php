@@ -66,11 +66,11 @@
    
 	add_action( 'admin_menu', 'hc2_pages_menu', 15 );
 	function hc2_pages_menu(){ 
-		add_menu_page( 'Blocks', 'Blocks', 'publish_posts', 'edit.php?post_type=wp_block', '', 'dashicons-share-alt2', 25 );
-		add_submenu_page( 'edit.php?post_type=page', 'Audit Pages', 'Audit Pages', 'publish_posts', 'hc2_pages', 'hc2_pages_generate_page' );
-		add_submenu_page( 'edit.php', 'Audit Posts', 'Audit Posts', 'publish_posts', 'hc2_posts', 'hc2_posts_generate_page' );
-		add_submenu_page( 'edit.php?post_type=web-story', 'Audit Stories', 'Audit Stories', 'publish_posts', 'hc2_stories', 'hc2_stories_generate_page' );
-		add_submenu_page( 'edit.php?post_type=wp_block', 'Audit Blocks', 'Audit Blocks', 'publish_posts', 'hc2_blocks', 'hc2_blocks_generate_page' );
+		add_menu_page( 'Blocks', 'Blocks', 'manage_options', 'edit.php?post_type=wp_block', '', 'dashicons-share-alt2', 25 );
+		add_submenu_page( 'edit.php?post_type=page', 'Audit Pages', 'Audit Pages', 'manage_options', 'hc2_pages', 'hc2_pages_generate_page' );
+		add_submenu_page( 'edit.php', 'Audit Posts', 'Audit Posts', 'manage_options', 'hc2_posts', 'hc2_posts_generate_page' );
+		add_submenu_page( 'edit.php?post_type=web-story', 'Audit Stories', 'Audit Stories', 'manage_options', 'hc2_stories', 'hc2_stories_generate_page' );
+		add_submenu_page( 'edit.php?post_type=wp_block', 'Audit Blocks', 'Audit Blocks', 'manage_options', 'hc2_blocks', 'hc2_blocks_generate_page' );
 	}
 	
     function hc2_blocks_generate_page(){
