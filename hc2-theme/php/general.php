@@ -10,7 +10,7 @@
 			array_push( $output, array( 
 				"title" => get_post_meta( $post->ID, 'hc2_custom_title', 1 ),
 				"type" => $post->post_type,
-				"link" => get_edit_post_link( $post ),
+				"link" => get_permalink( $post ),
 				"hidden" => get_post_meta( $post->ID, 'hcube_sitemap_hide', 1 ),
 				"notracking" => get_post_meta( $post->ID, 'hcube_cm_notracking', 1 ),
 				"conversion_trigger_a" => get_post_meta( $post->ID, 'hcube_conversion_trigger_a', 1 ),

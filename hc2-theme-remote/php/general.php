@@ -3,14 +3,14 @@
 	if ( ! defined( 'ABSPATH' ) ) exit;
 	
 	add_action('rest_api_init',function(){register_rest_route('hc2/v1','/external_audit/',array('methods'=>'GET','callback'=>'external_audit','permission_callback' => '__return_true'));});
-	function hc2_update_monday(){
+	function external_audit(){
 		$output = [];
 		$postsQuery = get_posts( array( 'numberposts' => -1, 'post_status'=>array( 'publish' ), 'post_type' => array( 'post', 'page', 'web-story', 'product' ) ) );	
 		foreach ( $postsQuery as $post ) {
 			array_push( $output, array( 
 				"title" => get_post_meta( $post->ID, 'hc2_custom_title', 1 ),
 				"type" => $post->post_type,
-				"link" => get_edit_post_link( $post ),
+				"link" => get_permalink( $post ),
 				"hidden" => get_post_meta( $post->ID, 'hcube_sitemap_hide', 1 ),
 				"notracking" => get_post_meta( $post->ID, 'hcube_cm_notracking', 1 ),
 				"conversion_trigger_a" => get_post_meta( $post->ID, 'hcube_conversion_trigger_a', 1 ),
