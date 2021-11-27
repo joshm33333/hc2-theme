@@ -5,11 +5,10 @@
 	add_action('rest_api_init',function(){register_rest_route('hc2/v1','/external_audit/',array('methods'=>'GET','callback'=>'external_audit','permission_callback' => '__return_true'));});
 	function external_audit(){
 		$output = [];
-		$postsQuery = get_posts( array( 'numberposts' => -1, 'post_status'=>array( 'publish', 'future', 'private', 'draft' ), 'post_type' => array( 'post', 'page', 'web-story', 'product' ) ) );	
+		$postsQuery = get_posts( array( 'numberposts' => -1, 'post_status'=>array( 'publish' ), 'post_type' => array( 'post', 'page', 'web-story', 'product' ) ) );	
 		foreach ( $postsQuery as $post ) {
 			array_push( $output, array( 
 				"title" => get_post_meta( $post->ID, 'hc2_custom_title', 1 ),
-				"status" => $post->post_status,
 				"type" => $post->post_type,
 				"link" => get_edit_post_link( $post ),
 				"hidden" => get_post_meta( $post->ID, 'hcube_sitemap_hide', 1 ),
