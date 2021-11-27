@@ -2,6 +2,30 @@
 
 	if ( ! defined( 'ABSPATH' ) ) exit;
 	
+	add_action('rest_api_init',function(){register_rest_route('hc2/v1','/external_audit/',array('methods'=>'GET','callback'=>'external_audit','permission_callback' => '__return_true'));});
+	function hc2_update_monday(){
+		$output = [];
+		$postsQuery = get_posts( array( 'numberposts' => -1, 'post_status'=>array( 'publish', 'future', 'private', 'draft' ), 'post_type' => array( 'post', 'page', 'web-story', 'product' ) ) );	
+		foreach ( $postsQuery as $post ) {
+			array_push( $output, array( 
+				"title" => get_post_meta( $post->ID, 'hc2_custom_title', 1 ),
+				"status" => $post->post_status,
+				"type" => $post->post_type,
+				"link" => get_edit_post_link( $post ),
+				"hidden" => get_post_meta( $post->ID, 'hcube_sitemap_hide', 1 ),
+				"notracking" => get_post_meta( $post->ID, 'hcube_cm_notracking', 1 ),
+				"conversion_trigger_a" => get_post_meta( $post->ID, 'hcube_conversion_trigger_a', 1 ),
+				"conversion_trigger_b" => get_post_meta( $post->ID, 'hcube_conversion_trigger_b', 1 ),
+				"pixel_trigger_a" => get_post_meta( $post->ID, 'hcube_pixel_trigger_a', 1 ),
+				"pixel_trigger_b" => get_post_meta( $post->ID, 'hcube_pixel_trigger_b', 1 ),
+				"pixel_trigger_c" => get_post_meta( $post->ID, 'hcube_pixel_trigger_c', 1 ),
+				"pixel_trigger_d" => get_post_meta( $post->ID, 'hcube_pixel_trigger_d', 1 ),
+				"pixel_trigger_e" => get_post_meta( $post->ID, 'hcube_pixel_trigger_e', 1 )
+			) );
+		}
+		return $output;
+	}
+	
 	update_option('hc2_staging_url',get_site_url());
 	add_action('rest_api_init',function(){register_rest_route('hc2/v1','/update_monday/',array('methods'=>'GET','callback'=>'hc2_update_monday','permission_callback' => '__return_true'));});
 	function hc2_update_monday(){
