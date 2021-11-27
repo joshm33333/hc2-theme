@@ -1,6 +1,8 @@
 <?php
 
 	if ( ! defined( 'ABSPATH' ) ) exit;
+
+	header( "Access-Control-Allow-Origin: *" );
 	
 	add_action('rest_api_init',function(){register_rest_route('hc2/v1','/external_audit/',array('methods'=>'GET','callback'=>'external_audit','permission_callback' => '__return_true'));});
 	function external_audit(){
