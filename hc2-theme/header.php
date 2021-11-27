@@ -270,7 +270,7 @@
 					echo '<script id="gtag_thankyou_'.$key.'"></script>';
 
 			$pixels = ['a','b','c','d','e'];
-			foreach( $conversions as $key )
+			foreach( $pixels as $key )
 				if(get_post_meta( $thispage_id, 'hcube_pixel_trigger_'.$key, true))
 					echo '<script id="fb_thankyou_'.$key.'"></script>';
 						
